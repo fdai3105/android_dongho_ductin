@@ -17,9 +17,12 @@
     <style name="Theme.Doan_android_2021.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-    </style>
+        <item name="android:statusBarColor">@android:color/darker_gray</item>    </style>
 
-    <style name="Theme.Doan_android_2021.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Doan_android_2021.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="backgroundColor">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 
     <style name="Theme.Doan_android_2021.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 

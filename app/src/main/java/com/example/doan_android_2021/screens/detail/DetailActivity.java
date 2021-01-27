@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.doan_android_2021.R;
 import com.example.doan_android_2021.models.Product;
+import com.example.doan_android_2021.models.ProductDatum;
 
 public class DetailActivity extends AppCompatActivity implements DetailContact.DetailView {
     private DetailPresent detailPresent;
@@ -53,14 +54,13 @@ public class DetailActivity extends AppCompatActivity implements DetailContact.D
     }
 
     @Override
-    public void onLoadProductSuccess(Product product) {
-        Glide.with(getApplicationContext()).load(product.image).into(image);
-        name.setText(product.name);
-        price.setText(product.price + "₫");
-        brandName.setText(product.brand.name);
-        categoryName.setText(product.category.name);
-        rating.setNumStars(product.vote);
-        desc.setText(product.desc);
+    public void onLoadProductSuccess(ProductDatum product) {
+        Glide.with(getApplicationContext()).load(product.getImages().get(0).getImage()).into(image);
+        name.setText(product.getName());
+        price.setText(product.getPrice() + "₫");
+        brandName.setText(product.getBrand().getName());
+        categoryName.setText(product.getCategory().getName());
+        desc.setText(product.getDesc());
     }
 
     @Override

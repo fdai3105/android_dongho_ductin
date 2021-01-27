@@ -1,53 +1,52 @@
 package com.example.doan_android_2021.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Product {
-    @SerializedName("id")
+    @SerializedName("data")
     @Expose
-    public Integer id;
-    @SerializedName("name")
+    private ArrayList<ProductDatum> data = null;
+    @SerializedName("links")
     @Expose
-    public String name;
-    @SerializedName("desc")
+    private Links links;
+    @SerializedName("meta")
     @Expose
-    public String desc;
-    @SerializedName("image")
-    @Expose
-    public String image;
-    @SerializedName("price")
-    @Expose
-    public int price;
-    @SerializedName("vote")
-    @Expose
-    public Integer vote;
-    @SerializedName("brand")
-    @Expose
-    public Brand brand;
-    @SerializedName("category")
-    @Expose
-    public Category category;
-    @SerializedName("created_at")
-    @Expose
-    public String createdAt;
-    @SerializedName("updated_at")
-    @Expose
-    public String updatedAt;
+    private Meta meta;
+
+    public ArrayList<ProductDatum> getData() {
+        return data;
+    }
+
+    public void setData(ArrayList<ProductDatum> data) {
+        this.data = data;
+    }
+
+    public Links getLinks() {
+        return links;
+    }
+
+    public void setLinks(Links links) {
+        this.links = links;
+    }
+
+    public Meta getMeta() {
+        return meta;
+    }
+
+    public void setMeta(Meta meta) {
+        this.meta = meta;
+    }
 
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", desc='" + desc + '\'' +
-                ", image='" + image + '\'' +
-                ", price=" + price +
-                ", vote=" + vote +
-                ", brand=" + brand +
-                ", category=" + category +
-                ", createdAt='" + createdAt + '\'' +
-                ", updatedAt='" + updatedAt + '\'' +
+                "data=" + data +
+                ", links=" + links +
+                ", meta=" + meta +
                 '}';
     }
 }

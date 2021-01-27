@@ -1,17 +1,23 @@
-package com.example.doan_android_2021.screens.home;
+package com.example.doan_android_2021.screens.dashboard.home;
 
 import com.example.doan_android_2021.BaseContact;
 import com.example.doan_android_2021.models.Product;
+import com.example.doan_android_2021.models.ProductDatum;
 
 import java.util.ArrayList;
 
 public interface HomeContact {
     interface HomeView extends BaseContact.BaseView {
-        void onLoadProductsSuccess(ArrayList<Product> products);
+        void onLoadProductsSuccess(ArrayList<ProductDatum> products);
+
+        void onLoadMore(Product product);
+
         void onLoadProductsFail();
     }
 
     interface HomePresent extends BaseContact.BasePresent {
-        void getProducts(int offset);
+        void getProducts();
+
+        void loadMore();
     }
 }
