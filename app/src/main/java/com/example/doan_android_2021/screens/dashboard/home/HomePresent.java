@@ -1,14 +1,12 @@
 package com.example.doan_android_2021.screens.dashboard.home;
 
-import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doan_android_2021.data.remote.ApiClient;
 import com.example.doan_android_2021.data.remote.services.ProductService;
 import com.example.doan_android_2021.models.Product;
-import com.example.doan_android_2021.models.ProductDatum;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,7 +16,6 @@ class HomePresent implements HomeContact.HomePresent {
     private final HomeContact.HomeView homeView;
     private final ProductService productService;
     public Product product;
-    public boolean isLoading;
 
     public HomePresent(HomeContact.HomeView homeView) {
         this.homeView = homeView;
@@ -26,7 +23,6 @@ class HomePresent implements HomeContact.HomePresent {
     }
 
     void init() {
-        isLoading = false;
         getProducts();
     }
 
@@ -65,6 +61,5 @@ class HomePresent implements HomeContact.HomePresent {
 
             }
         });
-        isLoading = false;
     }
 }

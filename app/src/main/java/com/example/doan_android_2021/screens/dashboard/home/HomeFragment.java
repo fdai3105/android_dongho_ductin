@@ -49,7 +49,6 @@ public class HomeFragment extends Fragment implements HomeContact.HomeView {
                     if (!isLoading) {
                         if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == productAdapter.getItemCount() - 1) {
                             homePresent.loadMore();
-                            homePresent.isLoading = true;
                         }
                     }
                 }
@@ -75,7 +74,6 @@ public class HomeFragment extends Fragment implements HomeContact.HomeView {
             intent.putExtra("id", id);
             startActivity(intent);
         });
-
         homeRV.setAdapter(productAdapter);
     }
 

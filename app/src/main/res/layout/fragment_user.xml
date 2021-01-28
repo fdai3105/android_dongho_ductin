@@ -13,12 +13,23 @@
         android:layout_marginVertical="20dp"
         android:paddingHorizontal="10dp">
 
-        <ImageView
-            android:id="@+id/user.iv"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+        <RelativeLayout
+            android:id="@+id/user.avatar"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_marginRight="10dp"
-            android:src="@drawable/placeholder_user" />
+            android:background="@drawable/bg_circle"
+            android:backgroundTint="#1C6A6C"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/user.avatar.text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="F"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

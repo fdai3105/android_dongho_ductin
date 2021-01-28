@@ -19,7 +19,6 @@ class UserPresent implements UserContact.UserPresent {
 
     @Override
     public void getUser() {
-        Log.i("TAG", "getUser: " + isLogin());
         if (isLogin()) {
             view.authSuccess(pref.getUserFromPref());
         } else {

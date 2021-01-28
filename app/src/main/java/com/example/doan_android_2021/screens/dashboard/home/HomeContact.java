@@ -10,14 +10,15 @@ public interface HomeContact {
     interface HomeView extends BaseContact.BaseView {
         void onLoadProductsSuccess(ArrayList<ProductDatum> products);
 
+        void onLoadProductsFail();
+
         void onLoadMore(Product product);
 
-        void onLoadProductsFail();
     }
 
     interface HomePresent extends BaseContact.BasePresent {
         void getProducts();
-
+        
         void loadMore();
     }
 }

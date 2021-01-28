@@ -15,7 +15,7 @@ interface LoginContact {
     }
 
     interface LoginPresent extends BaseContact.BasePresent {
-        boolean loginValidation(EditText email, EditText password);
+        boolean validation(EditText email, EditText password);
 
         void login(String email, String password);
     }

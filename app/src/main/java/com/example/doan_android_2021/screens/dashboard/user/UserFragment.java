@@ -1,24 +1,25 @@
 package com.example.doan_android_2021.screens.dashboard.user;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.doan_android_2021.MainActivity;
 import com.example.doan_android_2021.R;
 import com.example.doan_android_2021.models.User;
 import com.example.doan_android_2021.screens.login.LoginActivity;
 import com.example.doan_android_2021.utlis.SharedPref;
+
+import java.util.Random;
 
 public class UserFragment extends Fragment implements UserContact.UserView {
     private UserPresent userPresent;
@@ -27,6 +28,8 @@ public class UserFragment extends Fragment implements UserContact.UserView {
     private LinearLayout userLogout;
     private TextView userName;
     private TextView userPhone;
+    private RelativeLayout userAvatar;
+    private TextView userAvatarText;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -36,6 +39,8 @@ public class UserFragment extends Fragment implements UserContact.UserView {
         llTitle = root.findViewById(R.id.user_view_title);
         userName = root.findViewById(R.id.user_name);
         userPhone = root.findViewById(R.id.user_phone);
+        userAvatar = root.findViewById(R.id.user_avatar);
+        userAvatarText = root.findViewById(R.id.user_avatar_text);
         userLogout = root.findViewById(R.id.user_logout);
 
         llLogin.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +74,7 @@ public class UserFragment extends Fragment implements UserContact.UserView {
         llTitle.setVisibility(View.VISIBLE);
         userName.setText(user.getUser().getFullName());
         userPhone.setText(user.getUser().getPhoneNumber());
-
+        userAvatarText.setText(user.getUser().getFullName().substring(0, 1).toUpperCase());
     }
 
     @Override

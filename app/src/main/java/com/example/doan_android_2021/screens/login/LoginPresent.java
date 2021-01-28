@@ -32,7 +32,7 @@ class LoginPresent implements LoginContact.LoginPresent {
 
 
     @Override
-    public boolean loginValidation(EditText email, EditText password) {
+    public boolean validation(EditText email, EditText password) {
         String emailVal = email.getText().toString().trim();
         String passwordVal = password.getText().toString().trim();
         if (emailVal.length() < 1 || passwordVal.length() < 1) {

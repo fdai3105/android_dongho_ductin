@@ -57,11 +57,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     public void addMore(Product product) {
-        if (product == null) {
-            this.products.add(null);
-            notifyItemInserted(products.size() - 1);
-            return;
-        }
+        if(product == null) return;
         this.products.addAll(product.getData());
         notifyDataSetChanged();
     }
