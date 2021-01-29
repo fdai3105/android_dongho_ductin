@@ -8,6 +8,9 @@ import com.example.doan_android_2021.data.remote.ApiClient;
 import com.example.doan_android_2021.data.remote.services.ProductService;
 import com.example.doan_android_2021.models.Product;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,6 +27,7 @@ class HomePresent implements HomeContact.HomePresent {
 
     void init() {
         getProducts();
+        getBanners();
     }
 
     @Override
@@ -42,6 +46,15 @@ class HomePresent implements HomeContact.HomePresent {
 
             }
         });
+    }
+
+    @Override
+    public void getBanners() {
+        List<String> banner = new ArrayList<>();
+        banner.add("https://cdn.tgdd.vn/2021/01/banner/1200-350-1200x350-2.png");
+        banner.add("https://www.dangquangwatch.vn/upload/slideshow/346623209_dang_quang_watch_2021.jpg");
+        banner.add("https://www.dangquangwatch.vn/upload/slideshow/2113663755_dang_quang_watch_cuoi_2021.jpg");
+        homeView.onLoadBannerSuccess(banner);
     }
 
     @Override

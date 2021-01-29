@@ -1,9 +1,12 @@
 package com.example.doan_android_2021;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.doan_android_2021.screens.cart.CartActivity;
+import com.example.doan_android_2021.utlis.SharedPref;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -42,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            default:
-                break;
+        if (item.getItemId() == R.id.main_ab_cart) {
+            Intent intent = new Intent(this, CartActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

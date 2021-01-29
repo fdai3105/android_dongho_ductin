@@ -55,7 +55,7 @@ class DetailPresent implements DetailContact.DetailPresent {
     @Override
     public void addToCart(long productID, int quantity) {
         if (pref.getToken() == null) {
-            view.onAuthFail("Mời bạn đăng nhập");
+            view.onAuthFail("Vui lòng đăng nhập");
             return;
         }
 

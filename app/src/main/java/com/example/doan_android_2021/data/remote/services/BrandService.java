@@ -5,9 +5,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface BrandService {
-    @GET("/{id}")
+    @GET("brand/{id}")
     Call<Void> getBrand(@Path("id") int id);
 
-    @GET("")
-    Call<Void> getBrands();
+    @GET("brand")
+    Call<BrandResponse> getBrands();
 }

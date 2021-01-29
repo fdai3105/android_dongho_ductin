@@ -6,47 +6,60 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
 import com.example.doan_android_2021.R;
+import com.example.doan_android_2021.adapters.BannerAdapter;
 import com.example.doan_android_2021.adapters.ProductAdapter;
 import com.example.doan_android_2021.models.Product;
 import com.example.doan_android_2021.models.ProductDatum;
 import com.example.doan_android_2021.screens.detail.DetailActivity;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HomeFragment extends Fragment implements HomeContact.HomeView {
-    private HomePresent homePresent;
-    private ProgressBar homePB;
-    public RecyclerView homeRV;
+    private HomePresent present;
+    private ProgressBar pb;
+    private RecyclerView rvProduct;
+    private RecyclerView rvBanner;
     private ProductAdapter productAdapter;
+    private BannerAdapter bannerAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        homePresent = new HomePresent(this);
-        homePresent.init();
+        rvProduct = root.findViewById(R.id.home_cv);
+        rvBanner = root.findViewById(R.id.home_rv_banner);
+        pb = root.findViewById(R.id.home_pb);
 
-        homeRV = root.findViewById(R.id.home_cv);
-        homePB = root.findViewById(R.id.home_pb);
+        present = new HomePresent(this);
+        present.init();
 
-        homeRV.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        homeRV.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        rvProduct.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        rvBanner.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        rvProduct.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (dy > 0) {
                     LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                     if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == productAdapter.getItemCount() - 1) {
-                        homePresent.loadMore();
+                        present.loadMore();
                     }
                 }
             }
@@ -56,12 +69,12 @@ public class HomeFragment extends Fragment implements HomeContact.HomeView {
 
     @Override
     public void showProgress() {
-        homePB.setVisibility(View.VISIBLE);
+        pb.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-        homePB.setVisibility(View.GONE);
+        pb.setVisibility(View.GONE);
     }
 
     @Override
@@ -71,13 +84,13 @@ public class HomeFragment extends Fragment implements HomeContact.HomeView {
             intent.putExtra("id", id);
             startActivity(intent);
         });
-        homeRV.setAdapter(productAdapter);
+        rvProduct.setAdapter(productAdapter);
     }
 
     @Override
     public void onLoadMore(Product product) {
         if (product.getData() == null) {
-
+            return;
         }
         productAdapter.addMore(product);
     }
@@ -85,5 +98,38 @@ public class HomeFragment extends Fragment implements HomeContact.HomeView {
     @Override
     public void onLoadProductsFail() {
 
+    }
+
+    @Override
+    public void onLoadBannerSuccess(List<String> banners) {
+        bannerAdapter = new BannerAdapter(getContext(), banners);
+        SnapHelper snap = new PagerSnapHelper();
+        snap.attachToRecyclerView(rvBanner);
+        rvBanner.smoothScrollBy(5, 0);
+        rvBanner.setAdapter(bannerAdapter);
+        runAutoScrollBanner();
+    }
+
+    private void runAutoScrollBanner() {
+        Timer timer = null;
+        TimerTask timerTask = null;
+        final int[] position = {0};
+        if (timer == null && timerTask == null) {
+            timer = new Timer();
+            timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    if (position[0] == Integer.MAX_VALUE) {
+                        position[0] = Integer.MAX_VALUE / 2;
+                        rvBanner.scrollToPosition(position[0]);
+                        rvBanner.smoothScrollBy(5, 0);
+                    } else {
+                        position[0]++;
+                        rvBanner.smoothScrollToPosition(position[0]);
+                    }
+                }
+            };
+            timer.schedule(timerTask, 3000, 3000);
+        }
     }
 }

@@ -1,8 +1,5 @@
 package com.example.doan_android_2021.screens.login;
 
-
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.Patterns;
 import android.widget.EditText;
@@ -62,13 +59,13 @@ class LoginPresent implements LoginContact.LoginPresent {
 
     @Override
     public void login(String email, String password) {
+        homeView.showProgress();
         Map<String, String> body = new HashMap<>();
         body.put("email", email);
         body.put("password", password);
         userService.login(body).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                homeView.showProgress();
                 if (response.code() == 200) {
                     homeView.onLoginSuccess(response.body());
                 } else {
@@ -80,6 +77,7 @@ class LoginPresent implements LoginContact.LoginPresent {
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Log.e("TAG", "onFailure: " + t.getMessage());
+                homeView.hideProgress();
             }
         });
     }

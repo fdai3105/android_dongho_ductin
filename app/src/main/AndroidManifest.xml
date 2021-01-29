@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Doan_android_2021.NoActionBar">
+        <activity android:name=".screens.category.CategoryActivity"></activity>
         <activity android:name=".screens.register.RegisterActivity" />
         <activity android:name=".screens.login.LoginActivity" />
         <activity android:name=".screens.cart.CartActivity" />

@@ -3,23 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".screens.dashboard.category.CategoryFragment">
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        android:background="@android:color/darker_gray"
-        android:gravity="center"
-        android:text="Tên sản phẩm" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/category.rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        android:background="@android:color/darker_gray"
-        android:gravity="center"
-        android:text="Tên sản phẩm" />
 </LinearLayout>
