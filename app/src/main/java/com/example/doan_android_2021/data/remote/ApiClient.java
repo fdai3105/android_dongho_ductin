@@ -1,6 +1,7 @@
 package com.example.doan_android_2021.data.remote;
 
 import com.example.doan_android_2021.data.remote.services.BrandService;
+import com.example.doan_android_2021.data.remote.services.CartService;
 import com.example.doan_android_2021.data.remote.services.CategoryService;
 import com.example.doan_android_2021.data.remote.services.ProductService;
 import com.example.doan_android_2021.data.remote.services.UserService;
@@ -24,5 +25,9 @@ public class ApiClient {
 
     public static UserService getUserService() {
         return RetrofitClient.getRetrofit(BASE_URL).create(UserService.class);
+    }
+
+    public static CartService getCartService() {
+        return RetrofitClient.getRetrofit(BASE_URL).create(CartService.class);
     }
 }

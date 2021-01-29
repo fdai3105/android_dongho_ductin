@@ -10,4 +10,5 @@
 
     <!--    -->
     <color name="primary">#0E3A3B</color>
+    <color name="text_dark">#4C4C4C</color>
 </resources>

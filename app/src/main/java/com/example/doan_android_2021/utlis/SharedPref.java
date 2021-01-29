@@ -8,12 +8,10 @@ import com.example.doan_android_2021.models.User;
 import com.google.gson.Gson;
 
 public class SharedPref {
-    private Context context;
     private final SharedPreferences.Editor editor;
     private final SharedPreferences sharedPreferences;
 
     public SharedPref(Context context) {
-        this.context = context;
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         editor = sharedPreferences.edit();
     }
@@ -28,6 +26,12 @@ public class SharedPref {
     public User getUserFromPref() {
         Gson g = new Gson();
         return g.fromJson(sharedPreferences.getString("user", ""), User.class);
+    }
+
+    public String getToken() {
+        if (getUserFromPref() == null) return null;
+        return getUserFromPref().getAccessToken();
+
     }
 
     public void clear() {

@@ -44,11 +44,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ViewHolder newHolder = (ViewHolder) holder;
         NumberFormat formatter = new DecimalFormat("#,###");
-        Glide.with(context).load(products.get(position).getImages().get(0).getImage()).placeholder(R.drawable.placeholder).into(newHolder.image);
-        newHolder.name.setText(products.get(position).getName() + "");
-        newHolder.price.setText(formatter.format(products.get(position).getPrice()) + "₫");
+        Glide.with(context).load(products.get(position).getImages().get(0).getImage()).placeholder(R.drawable.placeholder).into(holder.image);
+        holder.name.setText(products.get(position).getName() + "");
+        holder.price.setText(formatter.format(products.get(position).getPrice()) + "₫");
     }
 
     @Override

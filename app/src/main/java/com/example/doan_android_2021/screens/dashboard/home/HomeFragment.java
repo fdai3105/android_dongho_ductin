@@ -27,7 +27,6 @@ public class HomeFragment extends Fragment implements HomeContact.HomeView {
     private ProgressBar homePB;
     public RecyclerView homeRV;
     private ProductAdapter productAdapter;
-    private boolean isLoading;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,10 +45,8 @@ public class HomeFragment extends Fragment implements HomeContact.HomeView {
                 super.onScrolled(recyclerView, dx, dy);
                 if (dy > 0) {
                     LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-                    if (!isLoading) {
-                        if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == productAdapter.getItemCount() - 1) {
-                            homePresent.loadMore();
-                        }
+                    if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == productAdapter.getItemCount() - 1) {
+                        homePresent.loadMore();
                     }
                 }
             }
