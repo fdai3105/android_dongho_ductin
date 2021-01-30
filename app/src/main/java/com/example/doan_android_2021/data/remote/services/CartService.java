@@ -24,4 +24,7 @@ public interface CartService {
 
     @POST("remove-cart")
     Call<ResponseBody> removeCart(@Body Map<String, String> body);
+
+    @POST("checkout")
+    Call<ResponseBody> checkout(@Header("Authorization") String token, @Body Map<String, String> body);
 }

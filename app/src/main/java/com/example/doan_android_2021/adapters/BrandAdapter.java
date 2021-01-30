@@ -57,11 +57,12 @@ public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.ViewHolder> 
 
         @Override
         public void onClick(View view) {
-            clickListener.onClick(brands.get(getAdapterPosition()).getId());
+            Brand brand = brands.get(getAdapterPosition());
+            clickListener.onClick(Long.valueOf(brand.getId()), brand.getName());
         }
     }
 
     public interface CategoryClickListener {
-        void onClick(int id);
+        void onClick(Long id, String name);
     }
 }

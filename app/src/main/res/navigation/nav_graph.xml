@@ -20,7 +20,7 @@
         android:id="@+id/CategoryFragment"
         android:name="com.example.doan_android_2021.screens.dashboard.category.CategoryFragment"
         android:label="@string/category_fragment_label"
-        tools:layout="@layout/fragment_category">
+        tools:layout="@layout/fragment_brand">
 
         <action
             android:id="@+id/action_CategoryFragment_to_HomeFragment"

@@ -6,8 +6,14 @@
     android:orientation="vertical"
     tools:context=".screens.dashboard.category.CategoryFragment">
 
+    <ProgressBar
+        android:id="@+id/fm.brand.pb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="180dp" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/category.rv"
+        android:id="@+id/fm.brand.rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

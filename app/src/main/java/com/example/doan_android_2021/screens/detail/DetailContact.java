@@ -11,6 +11,10 @@ public interface DetailContact {
 
         void onLoadProductFail(String message);
 
+        void onAddToCartSuccess();
+
+        void onAddToCartFail(String message);
+
         void onAuthFail(String message);
     }
 

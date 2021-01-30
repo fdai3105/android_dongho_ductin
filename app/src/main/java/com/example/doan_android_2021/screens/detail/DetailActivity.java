@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,8 @@ import java.text.NumberFormat;
 
 public class DetailActivity extends AppCompatActivity implements DetailContact.DetailView {
     private DetailPresent detailPresent;
+
+    private ProgressBar pb;
     private ImageView image;
     private TextView tvName;
     private TextView tvPrice;
@@ -66,6 +69,7 @@ public class DetailActivity extends AppCompatActivity implements DetailContact.D
     }
 
     private void findViews() {
+        pb = findViewById(R.id.detail_pb);
         image = findViewById(R.id.detail_image);
         tvName = findViewById(R.id.detail_name);
         tvPrice = findViewById(R.id.detail_price);
@@ -92,20 +96,14 @@ public class DetailActivity extends AppCompatActivity implements DetailContact.D
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.detail_ab_cart:
+                if (new SharedPref(this).getToken() == null) {
+                    Toast.makeText(this, "Vui lòng đăng nhập", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
                 Intent intent = new Intent(getApplicationContext(), CartActivity.class);
                 startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void showProgress() {
-
-    }
-
-    @Override
-    public void hideProgress() {
-
     }
 
     @Override
@@ -139,7 +137,28 @@ public class DetailActivity extends AppCompatActivity implements DetailContact.D
     }
 
     @Override
+    public void onAddToCartSuccess() {
+        Toast.makeText(this, "Thêm vào giỏ thành công", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onAddToCartFail(String message) {
+        Toast.makeText(this, "Thêm thất bại, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onAuthFail(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    public void showProgress() {
+        pb.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        pb.setVisibility(View.GONE);
     }
 }

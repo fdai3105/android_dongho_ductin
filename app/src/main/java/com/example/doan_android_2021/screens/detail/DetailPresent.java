@@ -1,14 +1,11 @@
 package com.example.doan_android_2021.screens.detail;
 
-import android.util.Log;
-
 import com.example.doan_android_2021.data.remote.ApiClient;
 import com.example.doan_android_2021.data.remote.response.ProductResponse;
 import com.example.doan_android_2021.data.remote.services.CartService;
 import com.example.doan_android_2021.data.remote.services.ProductService;
 import com.example.doan_android_2021.utlis.SharedPref;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,10 +30,10 @@ class DetailPresent implements DetailContact.DetailPresent {
 
     @Override
     public void getDetail(long id) {
+        view.showProgress();
         productService.getProduct(id).enqueue(new Callback<ProductResponse>() {
             @Override
             public void onResponse(Call<ProductResponse> call, Response<ProductResponse> response) {
-                view.showProgress();
                 if (response.isSuccessful()) {
                     if (response.isSuccessful()) {
                         view.onLoadProductSuccess(response.body().product);
@@ -48,6 +45,7 @@ class DetailPresent implements DetailContact.DetailPresent {
             @Override
             public void onFailure(Call<ProductResponse> call, Throwable t) {
                 view.onLoadProductFail(t.getMessage());
+                view.hideProgress();
             }
         });
     }
@@ -66,23 +64,15 @@ class DetailPresent implements DetailContact.DetailPresent {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    try {
-                        Log.i("TAG", "onResponse: " + response.body().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    view.onAddToCartSuccess();
                 } else {
-                    try {
-                        Log.e("TAG", "onResponse: " + response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    view.onAddToCartFail("fail");
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e("TAG", "onFailure: " + t.getMessage());
+                view.onAddToCartFail(t.getMessage());
             }
         });
     }

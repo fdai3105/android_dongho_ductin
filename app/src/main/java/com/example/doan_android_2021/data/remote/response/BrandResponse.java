@@ -1,4 +1,4 @@
-package com.example.doan_android_2021.data.remote.services;
+package com.example.doan_android_2021.data.remote.response;
 
 import com.example.doan_android_2021.models.Brand;
 import com.google.gson.annotations.SerializedName;

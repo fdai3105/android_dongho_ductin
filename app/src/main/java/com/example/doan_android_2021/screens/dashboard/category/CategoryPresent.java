@@ -1,10 +1,8 @@
 package com.example.doan_android_2021.screens.dashboard.category;
 
 import com.example.doan_android_2021.data.remote.ApiClient;
-import com.example.doan_android_2021.data.remote.response.CategoryResponse;
-import com.example.doan_android_2021.data.remote.services.BrandResponse;
+import com.example.doan_android_2021.data.remote.response.BrandResponse;
 import com.example.doan_android_2021.data.remote.services.BrandService;
-import com.example.doan_android_2021.data.remote.services.CategoryService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,6 +19,7 @@ class CategoryPresent implements CategoryContact.CategoryPresent {
 
     @Override
     public void getBrands() {
+        view.showProgress();
         brandService.getBrands().enqueue(new Callback<BrandResponse>() {
             @Override
             public void onResponse(Call<BrandResponse> call, Response<BrandResponse> response) {
@@ -29,11 +28,13 @@ class CategoryPresent implements CategoryContact.CategoryPresent {
                 } else {
                     view.onGetBrandsFail("Fail");
                 }
+                view.hideProgress();
             }
 
             @Override
             public void onFailure(Call<BrandResponse> call, Throwable t) {
                 view.onGetBrandsFail("Fail");
+                view.hideProgress();
             }
         });
     }
