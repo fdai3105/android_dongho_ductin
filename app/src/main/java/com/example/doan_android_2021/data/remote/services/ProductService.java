@@ -1,5 +1,6 @@
 package com.example.doan_android_2021.data.remote.services;
 
+import com.example.doan_android_2021.data.remote.response.HotProductResponse;
 import com.example.doan_android_2021.data.remote.response.ProductResponse;
 import com.example.doan_android_2021.models.Product;
 
@@ -13,8 +14,8 @@ public interface ProductService {
     Call<ProductResponse> getProduct(@Path("id") long id);
 
     @GET("product")
-    Call<Product> getProducts();
+    Call<Product> getProducts(@Query("page") long id);
 
-    @GET("product")
-    Call<Product> loadMore(@Query("page") long id);
+    @GET("hot-product")
+    Call<HotProductResponse> getHotProducts();
 }

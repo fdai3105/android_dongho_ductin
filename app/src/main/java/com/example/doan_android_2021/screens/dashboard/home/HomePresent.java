@@ -1,10 +1,8 @@
 package com.example.doan_android_2021.screens.dashboard.home;
 
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.doan_android_2021.data.remote.ApiClient;
+import com.example.doan_android_2021.data.remote.response.HotProductResponse;
 import com.example.doan_android_2021.data.remote.services.ProductService;
 import com.example.doan_android_2021.models.Product;
 
@@ -16,29 +14,30 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 class HomePresent implements HomeContact.HomePresent {
-    private final HomeContact.HomeView homeView;
+    private final HomeContact.HomeView view;
     private final ProductService productService;
     public Product product;
 
-    public HomePresent(HomeContact.HomeView homeView) {
-        this.homeView = homeView;
+    public HomePresent(HomeContact.HomeView view) {
+        this.view = view;
         productService = ApiClient.getProductService();
     }
 
     void init() {
-        getProducts();
+        getProducts(1);
         getBanners();
+        getHotProducts();
     }
 
     @Override
-    public void getProducts() {
-        productService.getProducts().enqueue(new Callback<Product>() {
+    public void getProducts(long page) {
+        productService.getProducts(page).enqueue(new Callback<Product>() {
             @Override
             public void onResponse(Call<Product> call, Response<Product> response) {
-                homeView.showProgress();
+                view.showProgress();
                 product = response.body();
-                homeView.onLoadProductsSuccess(product.getData());
-                homeView.hideProgress();
+                view.onLoadProductsSuccess(product.getData());
+                view.hideProgress();
             }
 
             @Override
@@ -54,19 +53,38 @@ class HomePresent implements HomeContact.HomePresent {
         banner.add("https://cdn.tgdd.vn/2021/01/banner/1200-350-1200x350-2.png");
         banner.add("https://www.dangquangwatch.vn/upload/slideshow/346623209_dang_quang_watch_2021.jpg");
         banner.add("https://www.dangquangwatch.vn/upload/slideshow/2113663755_dang_quang_watch_cuoi_2021.jpg");
-        homeView.onLoadBannerSuccess(banner);
+        view.onLoadBannerSuccess(banner);
+    }
+
+    @Override
+    public void getHotProducts() {
+        productService.getHotProducts().enqueue(new Callback<HotProductResponse>() {
+            @Override
+            public void onResponse(Call<HotProductResponse> call, Response<HotProductResponse> response) {
+                if (response.isSuccessful()) {
+                    view.onLoadHotProductsSuccess(response.body().hotProducts);
+                } else {
+                    view.onLoadHotProductsFail("cant get");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HotProductResponse> call, Throwable t) {
+                view.onLoadHotProductsFail("cant get");
+            }
+        });
     }
 
     @Override
     public void loadMore() {
-        if (product.getMeta().getCurrentPage() > product.getMeta().getLastPage()) {
-            return;
-        }
-        productService.loadMore(product.getMeta().getCurrentPage() + 1).enqueue(new Callback<Product>() {
+        if (product.getMeta().getCurrentPage() + 1 > product.getMeta().getLastPage()) return;
+        productService.getProducts(product.getMeta().getCurrentPage() + 1).enqueue(new Callback<Product>() {
             @Override
             public void onResponse(Call<Product> call, Response<Product> response) {
-                product = response.body();
-                homeView.onLoadMore(product);
+                if (response.isSuccessful()) {
+                    product = response.body();
+                    view.onLoadMore(product);
+                }
             }
 
             @Override

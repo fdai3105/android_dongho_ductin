@@ -9,20 +9,25 @@ import java.util.List;
 
 public interface HomeContact {
     interface HomeView extends BaseContact.BaseView {
+        void onLoadBannerSuccess(List<String> banners);
+
         void onLoadProductsSuccess(ArrayList<ProductDatum> products);
 
         void onLoadProductsFail();
 
-        void onLoadBannerSuccess(List<String> banners);
-
         void onLoadMore(Product product);
 
+        void onLoadHotProductsSuccess(List<ProductDatum> hotProducts);
+
+        void onLoadHotProductsFail(String message);
     }
 
     interface HomePresent extends BaseContact.BasePresent {
-        void getProducts();
-
         void getBanners();
+
+        void getHotProducts();
+
+        void getProducts(long page);
 
         void loadMore();
     }

@@ -25,12 +25,12 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
     Context context;
     List<ProductDatum> products;
-    ProductItemListener productItemListener;
+    private final AdapterClickListener clickListener;
 
-    public ProductAdapter(Context context, List<ProductDatum> products, ProductItemListener productItemListener) {
+    public ProductAdapter(Context context, List<ProductDatum> products, AdapterClickListener clickListener) {
         this.context = context;
         this.products = products;
-        this.productItemListener = productItemListener;
+        this.clickListener = clickListener;
     }
 
     @NonNull
@@ -39,7 +39,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         Context context = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.item_product, parent, false);
-        return new ViewHolder(view, productItemListener);
+        return new ViewHolder(view, clickListener);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     public void addMore(Product product) {
-        if(product == null) return;
+        if (product == null) return;
         this.products.addAll(product.getData());
         notifyDataSetChanged();
     }
@@ -68,32 +68,23 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView image;
-        TextView name;
-        TextView price;
-        ProductItemListener productItemListener;
+        private final ImageView image;
+        private final TextView name;
+        private final TextView price;
+        private final AdapterClickListener vhClickListener;
 
-        public ViewHolder(@NonNull View itemView, ProductItemListener productItemListener) {
+        public ViewHolder(@NonNull View itemView, AdapterClickListener vhClickListener) {
             super(itemView);
             image = itemView.findViewById(R.id.item_items_image);
             name = itemView.findViewById(R.id.item_product_name);
             price = itemView.findViewById(R.id.item_product_price);
-            this.productItemListener = productItemListener;
+            this.vhClickListener = vhClickListener;
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            this.productItemListener.onItemClick(getProduct(getAdapterPosition()).getId());
-            notifyDataSetChanged();
+            this.vhClickListener.onItemClickListener(products.get(getAdapterPosition()).getId());
         }
-    }
-
-    private ProductDatum getProduct(int i) {
-        return products.get(i);
-    }
-
-    public interface ProductItemListener {
-        void onItemClick(long id);
     }
 }
