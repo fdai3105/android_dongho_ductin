@@ -112,7 +112,7 @@ public class CartActivity extends AppCompatActivity implements CartContact.CartV
         NumberFormat format = new DecimalFormat("#,###");
         tvTotal.setText(format.format(total) + " vnd");
     }
-
+    
     @Override
     public void onGetCartFail(String message) {
 
@@ -151,7 +151,6 @@ public class CartActivity extends AppCompatActivity implements CartContact.CartV
 
         addAddressDialog.show();
     }
-
 
     @Override
     public void onGetAddressSuccess(List<Address> address) {

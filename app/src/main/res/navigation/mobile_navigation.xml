@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.doan_android_2021.screens.dashboard.category.CategoryFragment"
+        android:name="com.example.doan_android_2021.screens.dashboard.brand.BrandFragment"
         tools:layout="@layout/fragment_brand" />
 
     <fragment

@@ -1,4 +1,4 @@
-package com.example.doan_android_2021.screens.dashboard.category;
+package com.example.doan_android_2021.screens.dashboard.brand;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,11 +19,11 @@ import com.example.doan_android_2021.screens.brand.BrandActivity;
 
 import java.util.List;
 
-public class CategoryFragment extends Fragment implements CategoryContact.CategoryView {
-    private CategoryPresent present;
+public class BrandFragment extends Fragment implements BrandContact.BrandView {
+    private BrandPresent present;
 
     private ProgressBar pb;
-    private RecyclerView categoryRV;
+    private RecyclerView rvBrand;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -31,12 +31,12 @@ public class CategoryFragment extends Fragment implements CategoryContact.Catego
 
         /**/
         pb = root.findViewById(R.id.fm_brand_pb);
-        categoryRV = root.findViewById(R.id.fm_brand_rv);
+        rvBrand = root.findViewById(R.id.fm_brand_rv);
 
-        present = new CategoryPresent(this);
+        present = new BrandPresent(this);
         present.getBrands();
 
-        categoryRV.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        rvBrand.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
         return root;
     }
@@ -52,7 +52,7 @@ public class CategoryFragment extends Fragment implements CategoryContact.Catego
                 startActivity(intent);
             }
         });
-        categoryRV.setAdapter(brandAdapter);
+        rvBrand.setAdapter(brandAdapter);
     }
 
     @Override

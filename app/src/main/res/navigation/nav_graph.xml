@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/CategoryFragment"
-        android:name="com.example.doan_android_2021.screens.dashboard.category.CategoryFragment"
+        android:name="com.example.doan_android_2021.screens.dashboard.brand.BrandFragment"
         android:label="@string/category_fragment_label"
         tools:layout="@layout/fragment_brand">
 

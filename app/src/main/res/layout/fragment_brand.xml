@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".screens.dashboard.category.CategoryFragment">
+    tools:context=".screens.dashboard.brand.BrandFragment">
 
     <ProgressBar
         android:id="@+id/fm.brand.pb"

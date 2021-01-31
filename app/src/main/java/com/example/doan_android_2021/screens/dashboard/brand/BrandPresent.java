@@ -1,4 +1,4 @@
-package com.example.doan_android_2021.screens.dashboard.category;
+package com.example.doan_android_2021.screens.dashboard.brand;
 
 import com.example.doan_android_2021.data.remote.ApiClient;
 import com.example.doan_android_2021.data.remote.response.BrandResponse;
@@ -8,11 +8,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-class CategoryPresent implements CategoryContact.CategoryPresent {
-    private final CategoryContact.CategoryView view;
+class BrandPresent implements BrandContact.BrandPresent {
+    private final BrandContact.BrandView view;
     private final BrandService brandService;
 
-    CategoryPresent(CategoryContact.CategoryView view) {
+    BrandPresent(BrandContact.BrandView view) {
         this.view = view;
         this.brandService = ApiClient.getBrandService();
     }
