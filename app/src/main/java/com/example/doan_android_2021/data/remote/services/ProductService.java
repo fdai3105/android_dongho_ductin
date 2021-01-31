@@ -2,6 +2,7 @@ package com.example.doan_android_2021.data.remote.services;
 
 import com.example.doan_android_2021.data.remote.response.HotProductResponse;
 import com.example.doan_android_2021.data.remote.response.ProductResponse;
+import com.example.doan_android_2021.data.remote.response.SearchResponse;
 import com.example.doan_android_2021.models.Product;
 
 import retrofit2.Call;
@@ -18,4 +19,7 @@ public interface ProductService {
 
     @GET("hot-product")
     Call<HotProductResponse> getHotProducts();
+
+    @GET("search")
+    Call<SearchResponse> getSearchProduct(@Query("keyword") String keyword);
 }

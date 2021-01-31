@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.doan_android_2021.screens.cart.CartActivity;
+import com.example.doan_android_2021.screens.search.SearchActivity;
 import com.example.doan_android_2021.utlis.SharedPref;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -46,13 +47,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.main_ab_cart) {
-            if (new SharedPref(this).getToken() == null) {
-                Toast.makeText(this, "Vui lòng đăng nhập", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-            Intent intent = new Intent(this, CartActivity.class);
-            startActivity(intent);
+        switch (item.getItemId()) {
+            case R.id.main_ab_cart:
+                if (new SharedPref(this).getToken() == null) {
+                    Toast.makeText(this, "Vui lòng đăng nhập", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+                Intent intent = new Intent(this, CartActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.main_ab_search:
+                startActivity(new Intent(this, SearchActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

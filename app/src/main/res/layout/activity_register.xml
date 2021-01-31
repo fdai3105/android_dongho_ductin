@@ -5,27 +5,32 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary"
     android:orientation="vertical"
     android:paddingHorizontal="24dp"
-    tools:context=".screens.login.LoginActivity">
+    tools:context=".screens.register.RegisterActivity">
 
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginBottom="24dp"
-        android:text="Đăng ký" />
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
+        android:text="Đăng ký"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/register.name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_round"
         android:hint="Tên người dùng"
-        android:text="admin"
         android:inputType="textPersonName"
-        android:selectAllOnFocus="true" />
+        android:padding="10dp"
+        android:selectAllOnFocus="true"
+        android:text="admin" />
 
     <EditText
         android:id="@+id/register.email"
@@ -33,43 +38,51 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:autofillHints="true"
+        android:background="@drawable/bg_round"
         android:hint="Email:"
-        android:text="admin@gmail.com"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:text="admin@gmail.com" />
 
     <EditText
         android:id="@+id/register.password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:background="@drawable/bg_round"
         android:hint="Password"
-        android:text="nolabedau"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:text="nolabedau" />
 
     <EditText
         android:id="@+id/register.confirm.password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:background="@drawable/bg_round"
         android:hint="Confirm password"
-        android:text="nolabedau"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:text="nolabedau" />
 
     <EditText
         android:id="@+id/register.phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:background="@drawable/bg_round"
         android:hint="Số điện thoại:"
-        android:text="0777230926"
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:padding="10dp"
+        android:text="0777230926" />
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:paddingHorizontal="20dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp">
 
         <RadioButton
             android:id="@+id/register.rdb_male"
@@ -77,21 +90,25 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
-            android:text="Nam" />
+            android:text="Nam"
+            android:textColor="@color/white" />
 
         <RadioButton
             android:id="@+id/register.rdb_female"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Nữ" />
+            android:text="Nữ"
+
+            android:textColor="@color/white" />
 
         <RadioButton
             android:id="@+id/register.rdb_other"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Khác" />
+            android:text="Khác"
+            android:textColor="@color/white" />
     </RadioGroup>
 
     <Button
@@ -100,7 +117,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="Register" />
+        android:backgroundTint="@color/white"
+        android:text="Đăng ký"
+        android:textAllCaps="false"
+        android:textColor="@color/primary" />
 
     <Button
         android:id="@+id/register.to.login"
@@ -108,5 +128,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="Đã có tài khoản, login" />
+        android:backgroundTint="@color/white"
+        android:text="Đã có tài khoản, login"
+        android:textAllCaps="false"
+        android:textColor="@color/primary" />
 </LinearLayout>

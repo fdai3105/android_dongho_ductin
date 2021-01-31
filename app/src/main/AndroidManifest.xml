@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Doan_android_2021.NoActionBar">
+        <activity android:name=".screens.search.SearchActivity"></activity>
         <activity android:name=".screens.order_detail.OrderDetailActivity" />
         <activity android:name=".screens.order.OrderActivity" />
         <activity android:name=".screens.brand.BrandActivity" />

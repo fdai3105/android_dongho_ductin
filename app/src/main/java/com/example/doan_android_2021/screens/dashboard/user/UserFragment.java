@@ -17,6 +17,7 @@ import com.example.doan_android_2021.MainActivity;
 import com.example.doan_android_2021.R;
 import com.example.doan_android_2021.models.User;
 import com.example.doan_android_2021.screens.login.LoginActivity;
+import com.example.doan_android_2021.screens.order.OrderActivity;
 import com.example.doan_android_2021.utlis.SharedPref;
 
 import java.util.Random;
@@ -26,6 +27,7 @@ public class UserFragment extends Fragment implements UserContact.UserView {
     private LinearLayout llLogin;
     private LinearLayout llTitle;
     private LinearLayout userLogout;
+    private LinearLayout userOrder;
     private TextView userName;
     private TextView userPhone;
     private RelativeLayout userAvatar;
@@ -42,6 +44,9 @@ public class UserFragment extends Fragment implements UserContact.UserView {
         userAvatar = root.findViewById(R.id.user_avatar);
         userAvatarText = root.findViewById(R.id.user_avatar_text);
         userLogout = root.findViewById(R.id.user_logout);
+        userOrder = root.findViewById(R.id.user_order);
+
+        SharedPref pref = new SharedPref(getContext());
 
         llLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,8 +55,6 @@ public class UserFragment extends Fragment implements UserContact.UserView {
                 startActivity(intent);
             }
         });
-
-        SharedPref pref = new SharedPref(getContext());
         userLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,6 +62,13 @@ public class UserFragment extends Fragment implements UserContact.UserView {
                 Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
+            }
+        });
+        userOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), OrderActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -81,7 +91,6 @@ public class UserFragment extends Fragment implements UserContact.UserView {
     public void authFail() {
         llLogin.setVisibility(View.VISIBLE);
         llTitle.setVisibility(View.GONE);
-        userLogout.setVisibility(View.GONE);
     }
 
 

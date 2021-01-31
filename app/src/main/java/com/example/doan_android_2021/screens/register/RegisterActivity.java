@@ -2,6 +2,7 @@ package com.example.doan_android_2021.screens.register;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,8 @@ public class RegisterActivity extends AppCompatActivity implements RegisterConta
     Button btnSubmit;
     Button btnToLogin;
 
+    private Dialog loadingDialog;
+
     /**/
     RegisterPresent present;
 
@@ -43,6 +46,10 @@ public class RegisterActivity extends AppCompatActivity implements RegisterConta
         rdbOther = findViewById(R.id.register_rdb_other);
         btnSubmit = findViewById(R.id.register_submit);
         btnToLogin = findViewById(R.id.register_to_login);
+
+        loadingDialog = new Dialog(this);
+        loadingDialog.setContentView(R.layout.dialog_loading);
+        loadingDialog.setCancelable(false);
 
         /**/
         present = new RegisterPresent(this);
@@ -72,12 +79,12 @@ public class RegisterActivity extends AppCompatActivity implements RegisterConta
 
     @Override
     public void showProgress() {
-
+        loadingDialog.show();
     }
 
     @Override
     public void hideProgress() {
-
+        loadingDialog.dismiss();
     }
 
     @Override

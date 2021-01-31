@@ -12,7 +12,7 @@ public class Order {
     private String status;
     @SerializedName("total")
     @Expose
-    private Integer total;
+    private Long total;
     @SerializedName("note")
     @Expose
     private String note;
@@ -45,11 +45,11 @@ public class Order {
         this.status = status;
     }
 
-    public Integer getTotal() {
+    public Long getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(Long total) {
         this.total = total;
     }
 
